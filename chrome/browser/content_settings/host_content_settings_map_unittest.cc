@@ -1528,7 +1528,7 @@ TEST_F(HostContentSettingsMapTest, InvalidPattern) {
   TestingProfile profile;
   HostContentSettingsMap* host_content_settings_map =
       HostContentSettingsMapFactory::GetForProfile(&profile);
-  GURL unsupported_url = GURL("view-source:http://www.google.com");
+  GURL unsupported_url = GURL("view-source:http://www.duckduckgo.com");
   base::DictionaryValue test_value;
   test_value.SetString("test", "value");
   host_content_settings_map->SetWebsiteSettingDefaultScope(
@@ -1553,7 +1553,7 @@ TEST_F(HostContentSettingsMapTest, ClearSettingsForOneTypeWithPredicate) {
       ContentSettingsPattern::FromString("[*.]example.net");
 
   // Patterns without wildcards.
-  GURL url1("https://www.google.com/");
+  GURL url1("https://www.duckduckgo.com/");
   GURL url2("https://www.google.com/maps");
   GURL url3("http://www.google.com/maps");
   GURL url3_origin_only("http://www.google.com/");
