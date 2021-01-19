@@ -73,8 +73,8 @@ TEST_F(ContentSettingsDefaultProviderTest, DefaultValues) {
 }
 
 TEST_F(ContentSettingsDefaultProviderTest, IgnoreNonDefaultSettings) {
-  GURL primary_url("http://www.google.com");
-  GURL secondary_url("http://www.google.com");
+  GURL primary_url("http://www.duckduckgo.com");
+  GURL secondary_url("http://www.duckduckgo.com");
 
   EXPECT_EQ(CONTENT_SETTING_ALLOW,
             TestUtils::GetContentSetting(&provider_, primary_url, secondary_url,
