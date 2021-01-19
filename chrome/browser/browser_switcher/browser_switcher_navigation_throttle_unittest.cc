@@ -115,7 +115,7 @@ TEST_F(BrowserSwitcherNavigationThrottleTest, LaunchesOnRedirectRequest) {
   std::unique_ptr<NavigationThrottle> throttle =
       CreateNavigationThrottle(handle.get());
   EXPECT_EQ(NavigationThrottle::PROCEED, throttle->WillStartRequest());
-  handle->set_url(GURL("https://bing.com/"));
+  handle->set_url(GURL("https://duckduckgo.com/"));
   EXPECT_EQ(NavigationThrottle::CANCEL_AND_IGNORE,
             throttle->WillRedirectRequest());
   base::RunLoop().RunUntilIdle();
