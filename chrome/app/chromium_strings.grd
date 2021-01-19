@@ -185,10 +185,10 @@ If you update this file, be sure also to update google_chrome_strings.grd. -->
       </if>
 
       <message name="IDS_PRODUCT_NAME" desc="The Chrome application name">
-        Zoho_Chromium
+        BrowserX
       </message>
       <message name="IDS_SHORT_PRODUCT_NAME" desc="The Chrome application short name.">
-        Zoho_Chromium
+        BrowserX
       </message>
       <if expr="is_win">
         <message name="IDS_SXS_SHORTCUT_NAME" desc="Unused in Chromium builds" translateable="false">
