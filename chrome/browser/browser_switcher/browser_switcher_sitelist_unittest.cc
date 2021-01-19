@@ -112,7 +112,7 @@ TEST_F(BrowserSwitcherSitelistTest, ShouldRedirectWildcard) {
   EXPECT_TRUE(ShouldSwitch(GURL("http://example.com/")));
   EXPECT_TRUE(ShouldSwitch(GURL("https://example.com/foobar/")));
   EXPECT_TRUE(ShouldSwitch(GURL("http://example.com/foobar/")));
-  EXPECT_TRUE(ShouldSwitch(GURL("http://google.com/")));
+  EXPECT_TRUE(ShouldSwitch(GURL("http://duckduckgo.com/")));
 }
 
 TEST_F(BrowserSwitcherSitelistTest, ShouldRedirectHost) {
@@ -122,7 +122,7 @@ TEST_F(BrowserSwitcherSitelistTest, ShouldRedirectHost) {
   EXPECT_TRUE(ShouldSwitch(GURL("https://example.com/")));
   EXPECT_TRUE(ShouldSwitch(GURL("http://subdomain.example.com/")));
   EXPECT_TRUE(ShouldSwitch(GURL("http://example.com/foobar/")));
-  EXPECT_FALSE(ShouldSwitch(GURL("http://google.com/")));
+  EXPECT_FALSE(ShouldSwitch(GURL("http://duckduckgo.com/")));
   EXPECT_FALSE(ShouldSwitch(GURL("http://example.ca/")));
 
   // For backwards compatibility, this should also match, even if it's not the
@@ -153,7 +153,7 @@ TEST_F(BrowserSwitcherSitelistTest, ShouldRedirectPrefix) {
   EXPECT_FALSE(ShouldSwitch(GURL("https://example.com/foobar")));
   EXPECT_FALSE(ShouldSwitch(GURL("HTTP://EXAMPLE.COM/FOOBAR")));
   EXPECT_FALSE(ShouldSwitch(GURL("http://subdomain.example.com/")));
-  EXPECT_FALSE(ShouldSwitch(GURL("http://google.com/")));
+  EXPECT_FALSE(ShouldSwitch(GURL("http://duckduckgo.com/")));
 }
 
 TEST_F(BrowserSwitcherSitelistTest, ShouldRedirectInvertedMatch) {
@@ -216,7 +216,7 @@ TEST_F(BrowserSwitcherSitelistTest, ShouldPickUpPrefChanges) {
   EXPECT_TRUE(ShouldSwitch(GURL("http://example.com/")));
   EXPECT_TRUE(ShouldSwitch(GURL("http://bar.example.com/")));
   EXPECT_FALSE(ShouldSwitch(GURL("http://foo.example.com/")));
-  EXPECT_FALSE(ShouldSwitch(GURL("http://google.com/")));
+  EXPECT_FALSE(ShouldSwitch(GURL("http://duckduckgo.com/")));
 }
 
 TEST_F(BrowserSwitcherSitelistTest, ShouldIgnoreNonManagedPrefs) {
@@ -239,7 +239,7 @@ TEST_F(BrowserSwitcherSitelistTest, SetIeemSitelist) {
   sitelist()->SetIeemSitelist(std::move(ieem));
   EXPECT_TRUE(ShouldSwitch(GURL("http://example.com/")));
   EXPECT_TRUE(ShouldSwitch(GURL("http://bar.example.com/")));
-  EXPECT_FALSE(ShouldSwitch(GURL("http://google.com/")));
+  EXPECT_FALSE(ShouldSwitch(GURL("http://duckduckgo.com/")));
 }
 
 TEST_F(BrowserSwitcherSitelistTest, SetExternalSitelist) {
@@ -249,7 +249,7 @@ TEST_F(BrowserSwitcherSitelistTest, SetExternalSitelist) {
   sitelist()->SetExternalSitelist(std::move(external));
   EXPECT_TRUE(ShouldSwitch(GURL("http://example.com/")));
   EXPECT_TRUE(ShouldSwitch(GURL("http://bar.example.com/")));
-  EXPECT_FALSE(ShouldSwitch(GURL("http://google.com/")));
+  EXPECT_FALSE(ShouldSwitch(GURL("http://duckduckgo.com/")));
 }
 
 TEST_F(BrowserSwitcherSitelistTest, SetExternalGreylist) {
@@ -260,18 +260,18 @@ TEST_F(BrowserSwitcherSitelistTest, SetExternalGreylist) {
   EXPECT_TRUE(ShouldSwitch(GURL("http://example.com/")));
   EXPECT_TRUE(ShouldSwitch(GURL("http://bar.example.com/")));
   EXPECT_FALSE(ShouldSwitch(GURL("http://foo.example.com/")));
-  EXPECT_FALSE(ShouldSwitch(GURL("http://google.com/")));
+  EXPECT_FALSE(ShouldSwitch(GURL("http://duckduckgo.com/")));
 }
 
 TEST_F(BrowserSwitcherSitelistTest, All3Sources) {
-  Initialize({"google.com"}, {"mail.google.com"});
+  Initialize({"duckduckgo.com"}, {"mail.google.com"});
   ParsedXml ieem;
   ieem.rules = {"example.com"};
   sitelist()->SetIeemSitelist(std::move(ieem));
   ParsedXml external;
   external.rules = {"yahoo.com"};
   sitelist()->SetExternalSitelist(std::move(external));
-  EXPECT_TRUE(ShouldSwitch(GURL("http://google.com/")));
+  EXPECT_TRUE(ShouldSwitch(GURL("http://duckduckgo.com/")));
   EXPECT_TRUE(ShouldSwitch(GURL("http://drive.google.com/")));
   EXPECT_FALSE(ShouldSwitch(GURL("http://mail.google.com/")));
   EXPECT_TRUE(ShouldSwitch(GURL("http://example.com/")));
@@ -293,7 +293,7 @@ TEST_F(BrowserSwitcherSitelistTest, CheckReason) {
   EXPECT_EQ(Decision(kStay, kProtocol, ""),
             GetDecision(GURL("ftp://example.com/")));
   EXPECT_EQ(Decision(kStay, kDefault, ""),
-            GetDecision(GURL("http://google.com/")));
+            GetDecision(GURL("http://duckduckgo.com/")));
   EXPECT_EQ(Decision(kStay, kDefault, ""),
             GetDecision(GURL("http://bar.invalid.com/")));
   EXPECT_EQ(Decision(kStay, kSitelist, "!example.com"),
