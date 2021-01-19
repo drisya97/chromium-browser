@@ -2057,7 +2057,7 @@ TEST_F(TemplateURLServiceSyncTest, SyncBaseURLs) {
       PassProcessor(), CreateAndPassSyncErrorFactory());
   TemplateURL* synced_turl = model()->GetTemplateURLForGUID("guid");
   ASSERT_TRUE(synced_turl);
-  EXPECT_EQ(ASCIIToUTF16("google.com"), synced_turl->keyword());
+  EXPECT_EQ(ASCIIToUTF16("duckduckgo.com"), synced_turl->keyword());
   EXPECT_EQ(0U, processor()->change_list_size());
 
   // Remote updates to this URL's keyword should be silently ignored.
@@ -2066,7 +2066,7 @@ TEST_F(TemplateURLServiceSyncTest, SyncBaseURLs) {
       CreateTestTemplateURL(ASCIIToUTF16("google.de"),
           "{google:baseURL}search?q={searchTerms}", "guid")));
   ProcessAndExpectNotify(changes, 1);
-  EXPECT_EQ(ASCIIToUTF16("google.com"), synced_turl->keyword());
+  EXPECT_EQ(ASCIIToUTF16("duckduckgo.com"), synced_turl->keyword());
   EXPECT_EQ(0U, processor()->change_list_size());
 }
 
