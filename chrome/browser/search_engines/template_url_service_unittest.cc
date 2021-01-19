@@ -336,7 +336,7 @@ TEST_F(TemplateURLServiceTest, AddUpdateRemove) {
   TemplateURLData data;
   data.SetShortName(ASCIIToUTF16("google"));
   data.SetKeyword(ASCIIToUTF16("keyword"));
-  data.SetURL("http://www.google.com/foo/bar");
+  data.SetURL("http://www.duckduckgo.com/foo/bar");
   data.favicon_url = GURL("http://favicon.url");
   data.safe_for_autoreplace = true;
   data.date_created = Time::FromTimeT(100);
@@ -682,7 +682,7 @@ TEST_F(TemplateURLServiceTest, Reset) {
   TemplateURLData data;
   data.SetShortName(ASCIIToUTF16("google"));
   data.SetKeyword(ASCIIToUTF16("keyword"));
-  data.SetURL("http://www.google.com/foo/bar");
+  data.SetURL("http://www.duckduckgo.com/foo/bar");
   data.favicon_url = GURL("http://favicon.url");
   data.date_created = Time::FromTimeT(100);
   data.last_modified = Time::FromTimeT(100);
@@ -729,8 +729,8 @@ TEST_F(TemplateURLServiceTest, CreateFromPlayAPI) {
 
   const base::string16 short_name = ASCIIToUTF16("google");
   const base::string16 keyword = ASCIIToUTF16("keyword");
-  const std::string search_url = "http://www.google.com/foo/bar";
-  const std::string suggest_url = "http://www.google.com/suggest";
+  const std::string search_url = "http://www.duckduckgo.com/foo/bar";
+  const std::string suggest_url = "http://www.duckduckgo.com/suggest";
   const std::string favicon_url = "http://favicon.url";
   TemplateURL* t_url = model()->CreateOrUpdateTemplateURLFromPlayAPIData(
       short_name, keyword, search_url, suggest_url, favicon_url);
@@ -761,7 +761,7 @@ TEST_F(TemplateURLServiceTest, UpdateFromPlayAPI) {
   TemplateURLData data;
   data.SetShortName(ASCIIToUTF16("google"));
   data.SetKeyword(keyword);
-  data.SetURL("http://www.google.com/foo/bar");
+  data.SetURL("http://www.duckduckgo.com/foo/bar");
   data.favicon_url = GURL("http://favicon.url");
   data.date_created = Time::FromTimeT(100);
   data.last_modified = Time::FromTimeT(100);
@@ -929,7 +929,7 @@ TEST_F(TemplateURLServiceTest, RepairPrepopulatedSearchEngines) {
 
   // Edit Google search engine.
   TemplateURL* google = model()->GetTemplateURLForKeyword(
-      ASCIIToUTF16("google.com"));
+      ASCIIToUTF16("duckduckgo.com"));
   ASSERT_TRUE(google);
   model()->ResetTemplateURL(google, ASCIIToUTF16("trash"), ASCIIToUTF16("xxx"),
                             "http://www.foo.com/s?q={searchTerms}");
@@ -938,7 +938,7 @@ TEST_F(TemplateURLServiceTest, RepairPrepopulatedSearchEngines) {
 
   // Add third-party default search engine.
   TemplateURL* user_dse = AddKeywordWithDate(
-      "malware", "google.com", "http://www.goo.com/s?q={searchTerms}",
+      "malware", "duckduckgo.com", "http://www.goo.com/s?q={searchTerms}",
       std::string(), std::string(), std::string(), true);
   model()->SetUserSelectedDefaultSearchProvider(user_dse);
   EXPECT_EQ(user_dse, model()->GetDefaultSearchProvider());
@@ -961,7 +961,7 @@ TEST_F(TemplateURLServiceTest, RepairPrepopulatedSearchEngines) {
   ASSERT_EQ(google, model()->GetDefaultSearchProvider());
   // The keyword wasn't reverted.
   EXPECT_EQ(ASCIIToUTF16("trash"), google->short_name());
-  EXPECT_EQ("www.google.com",
+  EXPECT_EQ("www.duckduckgo.com",
             google->GenerateSearchURL(model()->search_terms_data()).host());
 
   // Bing was repaired.
@@ -972,7 +972,7 @@ TEST_F(TemplateURLServiceTest, RepairPrepopulatedSearchEngines) {
 
   // User search engine is preserved.
   EXPECT_EQ(user_dse, model()->GetTemplateURLForHost("www.goo.com"));
-  EXPECT_EQ(ASCIIToUTF16("google.com"), user_dse->keyword());
+  EXPECT_EQ(ASCIIToUTF16("duckduckgo.com"), user_dse->keyword());
 }
 
 TEST_F(TemplateURLServiceTest, RepairSearchEnginesWithManagedDefault) {
@@ -1199,11 +1199,11 @@ TEST_F(TemplateURLServiceWithoutFallbackTest, ManualCountrySpecificGoogleURL) {
   test_util()->ChangeModelToLoadState();
 
   const TemplateURL* t_url = AddKeywordWithDate(
-      "name", "google.com", "{google:baseURL}?q={searchTerms}", "http://sugg1",
+      "name", "duckduckgo.com", "{google:baseURL}?q={searchTerms}", "http://sugg1",
       std::string(), "http://icon1", false, "UTF-8;UTF-16");
-  ASSERT_EQ(t_url, model()->GetTemplateURLForHost("www.google.com"));
-  EXPECT_EQ("www.google.com", t_url->url_ref().GetHost(search_terms_data()));
-  EXPECT_EQ(ASCIIToUTF16("google.com"), t_url->keyword());
+  ASSERT_EQ(t_url, model()->GetTemplateURLForHost("www.duckduckgo.com"));
+  EXPECT_EQ("www.duckduckgo.com", t_url->url_ref().GetHost(search_terms_data()));
+  EXPECT_EQ(ASCIIToUTF16("duckduckgo.com"), t_url->keyword());
 
   // Now add a manual entry for a country-specific Google URL.
   TemplateURL* manual = AddKeywordWithDate(
@@ -1212,9 +1212,9 @@ TEST_F(TemplateURLServiceWithoutFallbackTest, ManualCountrySpecificGoogleURL) {
 
   // Verify that the entries do not conflict.
   ASSERT_EQ(t_url,
-            model()->GetTemplateURLForKeyword(ASCIIToUTF16("google.com")));
-  EXPECT_EQ("www.google.com", t_url->url_ref().GetHost(search_terms_data()));
-  EXPECT_EQ(ASCIIToUTF16("google.com"), t_url->keyword());
+            model()->GetTemplateURLForKeyword(ASCIIToUTF16("duckduckgo.com")));
+  EXPECT_EQ("www.duckduckgo.com", t_url->url_ref().GetHost(search_terms_data()));
+  EXPECT_EQ(ASCIIToUTF16("duckduckgo.com"), t_url->keyword());
   ASSERT_EQ(manual,
             model()->GetTemplateURLForKeyword(ASCIIToUTF16("google.de")));
   EXPECT_EQ("www.google.de", manual->url_ref().GetHost(search_terms_data()));
@@ -1551,7 +1551,7 @@ TEST_F(TemplateURLServiceTest, PatchEmptySyncGUID) {
   TemplateURLData data;
   data.SetShortName(ASCIIToUTF16("google"));
   data.SetKeyword(ASCIIToUTF16("keyword"));
-  data.SetURL("http://www.google.com/foo/bar");
+  data.SetURL("http://www.duckduckgo.com/foo/bar");
   data.sync_guid.clear();
   model()->Add(std::make_unique<TemplateURL>(data));
 
@@ -1579,7 +1579,7 @@ TEST_F(TemplateURLServiceTest, DuplicateInputEncodings) {
   TemplateURLData data;
   data.SetShortName(ASCIIToUTF16("google"));
   data.SetKeyword(ASCIIToUTF16("keyword"));
-  data.SetURL("http://www.google.com/foo/bar");
+  data.SetURL("http://www.duckduckgo.com/foo/bar");
   std::vector<std::string> encodings;
   data.input_encodings.push_back("UTF-8");
   data.input_encodings.push_back("UTF-8");
