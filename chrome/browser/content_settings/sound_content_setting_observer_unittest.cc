@@ -24,7 +24,7 @@
 
 namespace {
 
-constexpr char kURL1[] = "http://google.com/";
+constexpr char kURL1[] = "http://duckduckgo.com/";
 constexpr char kURL2[] = "http://youtube.com/";
 constexpr char kSiteMutedEvent[] = "Media.SiteMuted";
 constexpr char kSiteMutedReason[] = "MuteReason";
