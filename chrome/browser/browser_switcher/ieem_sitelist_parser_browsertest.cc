@@ -79,7 +79,7 @@ IN_PROC_BROWSER_TEST_F(IeemSitelistParserTest, V1Full) {
       "<path>/in_domain<more><docMode><domain>ignore.com</domain></docMode>"
       "</more><emie><domain>ignoretoo.com<path>/ignored_path</path></domain>"
       "</emie><domain>onemoreingored.com</domain><path>/ignore_nested_path>"
-      "</path></path></domain><domain>   \ngoogle.com\t\t \t</domain><domain "
+      "</path></path></domain><domain>   \nduckduckgo.com\t\t \t</domain><domain "
       "exclude=\"true\">good.com</domain><domain exclude=\"false\">more.com"
       "</domain><domain>e100.com<path>/path1</path><path exclude=\"true\">/pa2"
       "</path><path exclude=\"false\">/path3</path></domain><domain "
@@ -105,7 +105,7 @@ IN_PROC_BROWSER_TEST_F(IeemSitelistParserTest, V1Full) {
   std::vector<std::string> expected_sitelist = {
       "inside.com",
       "inside.com/in_domain",
-      "google.com",
+      "duckduckgo.com",
       "more.com",
       "e100.com",
       "e100.com/path1",
@@ -144,7 +144,7 @@ IN_PROC_BROWSER_TEST_F(IeemSitelistParserTest, V2Full) {
       "<!-- comments --></unknown><!-- no url attrib --><site><open-in>none"
       "</open-in></site><!-- nested site list --><site-list><site "
       "url=\"ignore!\"/></site-list><!-- nested site --><site "
-      "url=\"google.com\"><site url=\"nested ignore!\"></site></site><!-- "
+      "url=\"duckduckgo.com\"><site url=\"nested ignore!\"></site></site><!-- "
       "unknown tags in a site on multiple levels --><site url=\"good.site\">"
       "<!-- nested comments --><somethings>klj<other some=\"none\"/>jkh"
       "</somethings></site><!-- good sites --> <site url=\"www.cpandl.com\">"
@@ -157,7 +157,7 @@ IN_PROC_BROWSER_TEST_F(IeemSitelistParserTest, V2Full) {
       "</compat-mode></site><gibberish>Lorem ipsum sit...</gibberish>"
       "</trailing>-->";
   std::vector<std::string> expected_sitelist = {
-      "!google.com",  "!good.site",     "www.cpandl.com",
+      "!duckduckgo.com",  "!good.site",     "www.cpandl.com",
       "!contoso.com", "!relecloud.com", "!relecloud.com/about",
   };
   TestParseXml(xml, ParsedXml(std::move(expected_sitelist), base::nullopt));
