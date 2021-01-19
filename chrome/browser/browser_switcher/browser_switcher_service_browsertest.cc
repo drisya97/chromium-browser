@@ -249,12 +249,12 @@ IN_PROC_BROWSER_TEST_F(BrowserSwitcherServiceTest,
   auto* service = GetService();
 
   WaitForRefresh();
-  EXPECT_FALSE(ShouldSwitch(service, GURL("http://google.com/")));
+  EXPECT_FALSE(ShouldSwitch(service, GURL("http://duckduckgo.com/")));
   EXPECT_TRUE(ShouldSwitch(service, GURL("http://docs.google.com/")));
   EXPECT_FALSE(ShouldSwitch(service, GURL("http://yahoo.com/")));
 
   WaitForRefresh();
-  EXPECT_FALSE(ShouldSwitch(service, GURL("http://google.com/")));
+  EXPECT_FALSE(ShouldSwitch(service, GURL("http://duckduckgo.com/")));
   EXPECT_FALSE(ShouldSwitch(service, GURL("http://docs.google.com/")));
   EXPECT_TRUE(ShouldSwitch(service, GURL("http://yahoo.com/")));
 }
@@ -282,12 +282,12 @@ IN_PROC_BROWSER_TEST_F(BrowserSwitcherServiceTest,
   auto* service = GetService();
 
   WaitForRefresh();
-  EXPECT_FALSE(ShouldSwitch(service, GURL("http://google.com/")));
+  EXPECT_FALSE(ShouldSwitch(service, GURL("http://duckduckgo.com/")));
   EXPECT_FALSE(ShouldSwitch(service, GURL("http://docs.google.com/")));
   EXPECT_FALSE(ShouldSwitch(service, GURL("http://yahoo.com/")));
 
   WaitForRefresh();
-  EXPECT_FALSE(ShouldSwitch(service, GURL("http://google.com/")));
+  EXPECT_FALSE(ShouldSwitch(service, GURL("http://duckduckgo.com/")));
   EXPECT_TRUE(ShouldSwitch(service, GURL("http://docs.google.com/")));
 }
 
@@ -325,7 +325,7 @@ IN_PROC_BROWSER_TEST_F(BrowserSwitcherServiceTest, ExternalFileUrl) {
   auto* service = GetService();
 
   WaitForRefresh();
-  EXPECT_FALSE(ShouldSwitch(service, GURL("http://google.com/")));
+  EXPECT_FALSE(ShouldSwitch(service, GURL("http://duckduckgo.com/")));
   EXPECT_TRUE(ShouldSwitch(service, GURL("http://docs.google.com/")));
 }
 
@@ -340,7 +340,7 @@ IN_PROC_BROWSER_TEST_F(BrowserSwitcherServiceTest,
   auto* service = GetService();
 
   WaitForRefresh();
-  EXPECT_FALSE(ShouldSwitch(service, GURL("http://google.com/")));
+  EXPECT_FALSE(ShouldSwitch(service, GURL("http://duckduckgo.com/")));
   EXPECT_FALSE(ShouldSwitch(service, GURL("http://docs.google.com/")));
 }
 
@@ -383,7 +383,7 @@ IN_PROC_BROWSER_TEST_F(BrowserSwitcherServiceTest,
   // Execute everything and make sure the rules are applied correctly.
   auto* service = GetService();
   WaitForRefresh();
-  EXPECT_TRUE(ShouldSwitch(service, GURL("http://google.com/")));
+  EXPECT_TRUE(ShouldSwitch(service, GURL("http://duckduckgo.com/")));
   EXPECT_FALSE(ShouldSwitch(service, GURL("http://docs.google.com/")));
   EXPECT_TRUE(ShouldSwitch(service, GURL("http://yahoo.com/")));
 }
@@ -398,7 +398,7 @@ IN_PROC_BROWSER_TEST_F(BrowserSwitcherServiceTest,
   // Execute everything and make sure the rules are applied correctly.
   auto* service = GetService();
   WaitForRefresh();
-  EXPECT_FALSE(ShouldSwitch(service, GURL("http://google.com/")));
+  EXPECT_FALSE(ShouldSwitch(service, GURL("http://duckduckgo.com/")));
   EXPECT_TRUE(ShouldSwitch(service, GURL("http://docs.google.com/")));
   EXPECT_FALSE(ShouldSwitch(service, GURL("http://yahoo.com/")));
 }
@@ -414,7 +414,7 @@ IN_PROC_BROWSER_TEST_F(BrowserSwitcherServiceTest,
   auto* service = GetService();
   // No timeout here, since we're checking that the rules get applied *before*
   // downloading.
-  EXPECT_FALSE(ShouldSwitch(service, GURL("http://google.com/")));
+  EXPECT_FALSE(ShouldSwitch(service, GURL("http://duckduckgo.com/")));
   EXPECT_TRUE(ShouldSwitch(service, GURL("http://docs.google.com/")));
   EXPECT_FALSE(ShouldSwitch(service, GURL("http://yahoo.com/")));
 }
@@ -452,7 +452,7 @@ IN_PROC_BROWSER_TEST_F(BrowserSwitcherServiceTest,
   // Execute everything and make sure the rules are applied correctly.
   auto* service = GetService();
   WaitForRefresh();
-  EXPECT_FALSE(ShouldSwitch(service, GURL("http://google.com/")));
+  EXPECT_FALSE(ShouldSwitch(service, GURL("http://duckduckgo.com/")));
   EXPECT_TRUE(ShouldSwitch(service, GURL("http://docs.google.com/")));
 }
 
@@ -467,7 +467,7 @@ IN_PROC_BROWSER_TEST_F(BrowserSwitcherServiceTest, IeemIgnoresFailedDownload) {
   auto* service = GetService();
 
   WaitForRefresh();
-  EXPECT_FALSE(ShouldSwitch(service, GURL("http://google.com/")));
+  EXPECT_FALSE(ShouldSwitch(service, GURL("http://duckduckgo.com/")));
   EXPECT_FALSE(ShouldSwitch(service, GURL("http://docs.google.com/")));
 }
 
